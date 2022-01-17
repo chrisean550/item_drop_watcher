@@ -9,10 +9,12 @@ import platform
 from random import randint
 
 # Determines what firefox driver to use for system
-if platform.architecture()[0] == '64bit':
-    DRIVER_PATH = './geckodriver64'
-else:
-    DRIVER_PATH = '.geckodriver32'
+# if platform.architecture()[0] == '64bit':
+#     DRIVER_PATH = './geckodriver64'
+# else:
+#     DRIVER_PATH = '.geckodriver32'
+
+DRIVER_PATH = './geckodriver'
 
 active = True
 
