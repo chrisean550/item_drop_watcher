@@ -21,13 +21,13 @@
             "url": "https://www.bestbuy.com/site/microsoft-xbox-series-s-fortnite-rocket-league-bundle-disc-free-gaming-white/6485050.p?skuId=6485050"
         },
         {
-            "item":"nitendo switch",
+            "item":"nitendo switch - oled",
             "store": "bestbuy",
             "url": "https://www.bestbuy.com/site/nintendo-switch-oled-model-w-neon-red-neon-blue-joy-con-neon-red-neon-blue/6470924.p?skuId=6470924"
         },{
-            "item":"nintendo switch - oled",
+            "item":"nintendo switch",
             "store": "bestbuy",
-            "url": "https://www.bestbuy.com/site/nintendo-switch-oled-model-w-white-joy-con-white/6470923.p?skuId=6470923"
+            "url": "https://www.bestbuy.com/site/nintendo-switch-32gb-console-gray-joy-con/6364253.p?skuId=6364253"
         }
     ]
 }

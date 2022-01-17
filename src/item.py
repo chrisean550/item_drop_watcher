@@ -31,7 +31,7 @@ class item:
         soup = BeautifulSoup(self.page_source, 'html.parser')
         output = soup.find_all('button', class_='add-to-cart-button')[0]
         status = BeautifulSoup(str(output), 'lxml')
-        if status.text == "Sold Out":
+        if status.text == "Sold Out" or status.text == "Unavailable Nearby":
             self.__print_status(False)
         else:
             self.__print_status(True)
