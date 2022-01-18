@@ -4,17 +4,19 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 import json
-import time
+#import time
 import platform
 from random import randint
+import sys
 
 # Determines what firefox driver to use for system
-# if platform.architecture()[0] == '64bit':
-#     DRIVER_PATH = './geckodriver64'
-# else:
-#     DRIVER_PATH = '.geckodriver32'
-
-DRIVER_PATH = './geckodriver'
+if sys.argv[0] == "dev":
+    if platform.architecture()[0] == '64bit':
+        DRIVER_PATH = './geckodriver64'
+    else:
+        DRIVER_PATH = '.geckodriver32'
+else:
+    DRIVER_PATH = './geckodriver'
 
 active = True
 
@@ -41,7 +43,7 @@ def _main():
         for i in items:
             i.connect()
             i.check_inventory()
-            time.sleep(randint(1, 6))
+            #time.sleep(randint(1, 6))
 
 try:
     _main()
