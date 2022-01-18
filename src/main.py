@@ -21,6 +21,7 @@ else:
 active = True
 
 def _main():
+    
     # Configures headless browser
     print('Starting headless browser..')
     options = Options()
