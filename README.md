@@ -6,17 +6,13 @@ Python program designed to monitor the avaliability of products at select retail
 ### Installation
 
 1. Install Python3
-2. Make sure to have pip installed
-  2.1. `python3 -m pip install --user --upgrade pip`
-3. Install Python virtual environment
-  3.1 `pip install --user virtualenv`
+2. Make sure to have pip installed using `python3 -m pip install --user --upgrade pip`
+3. Install Python virtual environment with `pip install --user virtualenv`
 
 ### Running Program
 
-1. Provide the bash script with executable permissions
-  1.1. `chmod +x start.sh`
-2. Start the program
-  2.1 `./start.sh`
+1. Provide the bash script with executable permissions with `chmod +x start.sh`
+2. Start the program with `./start.sh`
 
 Once the script starts it will do the rest of the setting up process. This includes creating and starting virtual environment, installing required dependencies, and starting main python script.
 
