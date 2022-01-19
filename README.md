@@ -19,4 +19,4 @@ Once the script starts it will do the rest of the setting up process. This inclu
 ## Other Notes
 ### Browser Drivers
 
-By defualt the programs utilizes Firefox's  geckodriver and repository includes a 32 and 64 bit version that the program will automatically choose from. However, these may not be the correct driver for your system. A possible solution is to download Firefox onto your system and copying the driver included in the download into the root of the application.
+By defualt the program utilizes Firefox's  geckodriver and repository includes a 32 and 64 bit version that the program will automatically choose from. However, these may not be the correct driver for your system. A possible solution is to download Firefox onto your system and copying the driver included in the download into the root of the application.

@@ -10,7 +10,7 @@ from random import randint
 import sys
 
 # Determines what firefox driver to use for system
-if sys.argv[0] == "dev":
+if sys.argv[1] == "dev":
     if platform.architecture()[0] == '64bit':
         DRIVER_PATH = './geckodriver64'
     else:
