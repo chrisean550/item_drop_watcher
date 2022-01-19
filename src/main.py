@@ -1,5 +1,5 @@
 from ast import Try
-from item import item
+from item import Item
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
@@ -37,7 +37,7 @@ def _main():
     # Creates object list with each item
     items = []
     for i in data['items']:
-        items.append(item(i['item'], i['store'], i['url'], driver))
+        items.append(Item(i['item'], i['store'], i['url'], driver))
 
     # Check each items stock iteratively
     while active:

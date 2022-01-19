@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import datetime
 
 
-class item:
+class Item:
+    
     def __init__(self, item, store, url, driver, page_source=''):
         self.item = item
         self.store = store
