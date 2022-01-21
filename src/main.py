@@ -2,23 +2,18 @@ from item import item
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
-from pyvirtualdisplay import Display
 import json
 #import time
-import platform
 from random import randint
 import sys
 
 # Determines what firefox driver to use for system
 if sys.argv[1] == "dev":
     DRIVER_PATH = './geckodriver64'
-    HEADLESS = True
 else:
     DRIVER_PATH = './geckodriver'
-    display = Display(visible=0, size=(800,600))
-    display.start()
-    HEADLESS = False
 
+HEADLESS = True
 active = True
 
 def _main():

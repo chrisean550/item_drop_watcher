@@ -19,7 +19,6 @@ pycparser==2.21
 pymongo==4.0.1
 pyOpenSSL==21.0.0
 python-dotenv==0.19.2
-PyVirtualDisplay==2.2
 requests==2.27.1
 selenium==4.1.0
 six==1.16.0
