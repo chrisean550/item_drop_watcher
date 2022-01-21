@@ -11,12 +11,9 @@ import sys
 
 # Determines what firefox driver to use for system
 if sys.argv[1] == "dev":
-    if platform.architecture()[0] == '64bit':
-        DRIVER_PATH = './geckodriver64'
-    else:
-        DRIVER_PATH = '.geckodriver32'
+    DRIVER_PATH = './geckodriver64'
 else:
-    DRIVER_PATH = './geckodriver'
+    DRIVER_PATH = './geckodriver-arm7.tar'
 
 active = True
 
