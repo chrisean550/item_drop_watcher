@@ -13,7 +13,7 @@ if sys.argv[1] == "dev":
 else:
     DRIVER_PATH = './geckodriver'
 
-HEADLESS = True
+HEADLESS = False
 active = True
 
 def _main():
