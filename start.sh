@@ -12,7 +12,7 @@ echo "Virtual environment started"
 
 echo "Installing dependencies..."
 
-pip install -r requirements.txt
+pip install -r requirements2.txt
 
 echo "Dependencies installed"
 
