@@ -13,7 +13,7 @@ import sys
 if sys.argv[1] == "dev":
     DRIVER_PATH = './geckodriver64'
 else:
-    DRIVER_PATH = './geckodriver-arm7.tar'
+    DRIVER_PATH = './geckodriver'
 
 active = True
 
