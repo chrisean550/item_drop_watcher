@@ -2,8 +2,6 @@ from item import item
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.chrome.options import Options as chrome_options
-from selenium.webdriver.chrome.service import Service as chrome_service
 import json
 #import time
 from random import randint
@@ -13,7 +11,7 @@ import sys
 if sys.argv[1] == "dev":
     DRIVER_PATH = './geckodriver64'
 else:
-    DRIVER_PATH = './chromedriver'
+    DRIVER_PATH = './geckodriver'
 
 HEADLESS = True
 active = True
@@ -22,16 +20,12 @@ def _main():
     
     # Configures headless browser
     print('Starting headless browser..')
-    if sys.argv[1] == "dev":
-        options = Options()
-        options.headless = HEADLESS
-        service = Service(executable_path = DRIVER_PATH)
-        driver = webdriver.Firefox(service=service, options=options)
-    else:
-        options = chrome_options()
-        options.headless = HEADLESS
-        service = chrome_service(executable_path = DRIVER_PATH)
-        driver = webdriver.Chrome(service=service, options=options)
+
+    options = Options()
+    options.headless = HEADLESS
+    service = Service(executable_path = DRIVER_PATH)
+    driver = webdriver.Firefox(service=service, options=options)
+
 
     print('Browser has successfully opened')
 
