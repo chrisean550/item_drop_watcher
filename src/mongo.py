@@ -14,7 +14,7 @@ class MongoConnection:
 
         try:
             self.client.server_info()
-            #print("Successfull connection")
+            print("Successfull connection")
         except Exception:
             print("Failed to connect to server")
 

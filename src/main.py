@@ -44,8 +44,10 @@ def _main():
         data = json.load(file)
 
     # Connecting to mongodb
+    print("Connecting to database...")
     db = MongoConnection(DATABASE)
     db.connect()
+    
     
     # Creates object list with each item
     items = []
