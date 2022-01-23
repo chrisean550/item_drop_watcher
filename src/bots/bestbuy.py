@@ -1,4 +1,10 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from bots.bot import Bot
+from bs4 import BeautifulSoup
+import time
 
 class BestBuy(Bot):
 
@@ -10,6 +16,13 @@ class BestBuy(Bot):
         self.driver = Bot.open_browser()
         self.driver.get(self.url)
         print(self.driver.title)
+        self.__nav_to_saved()
+    
+    def __nav_to_saved(self):
+        time.sleep(1)
+        self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+        time.sleep(1)
+        self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
 
 
 
