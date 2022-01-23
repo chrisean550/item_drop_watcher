@@ -20,6 +20,16 @@ class BestBuy(Bot):
     
     def __nav_to_saved(self):
         time.sleep(1)
+        self.driver.execute_script("""
+            return document.getElementsByClassName('c-modal-grid')[0].remove();
+        """)
+        self.driver.execute_script("""
+            return document.getElementsByClassName('c-modal-window')[0].remove();
+        """)
+        self.driver.execute_script("""
+            return document.getElementsByClassName('c-overlay-fullscreen')[0].remove();
+        """)
+        time.sleep(1)
         self.driver.find_element(By.CLASS_NAME, 'account-button').click()
         time.sleep(1)
         self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
