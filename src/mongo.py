@@ -16,7 +16,7 @@ class MongoConnection:
             self.client.server_info()
             print("Successfull connection")
         except Exception:
-            print("Failed to connect to server")
+            print("Failed to connect to database")
 
     def update_last_avaliablity(self, data):
 
