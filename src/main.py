@@ -7,6 +7,8 @@ import os
 load_dotenv()
 
 DATABASE = os.environ.get('MONGO_URI')
+BB_USR = os.environ.get('BESTBUY_USERNAME')
+BB_PWD = os.environ.get('BESTBUY_PASSWORD')
 
 def _main():
 
@@ -16,8 +18,12 @@ def _main():
     db.connect()
 
     print("Connecting Bestbuy bot..")
-    bot1 = BestBuy()
+    global bot1
+    bot1 = BestBuy(BB_USR, BB_PWD, db)
     bot1.connect()
+    
+    while True:
+        bot1.watch()
 
     
             
