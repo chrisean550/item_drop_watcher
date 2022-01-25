@@ -43,7 +43,7 @@ class BestBuy(Bot):
         except:
             self.__clear_blockers()
             self.driver.find_element(By.CLASS_NAME, 'account-button').click()
-            
+        Bot.wait()  
         self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
         Bot.wait()
 
