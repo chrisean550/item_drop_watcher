@@ -37,22 +37,21 @@ class BestBuy(Bot):
     # From the home page it signs in to account and accesses saved page
     def __nav_to_saved(self):
 
+        print('Navigating to saved items')
         # Navigating to signin page
-        try:
-            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
-        except:
-            self.__clear_blockers()
-            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
-        Bot.wait()  
+        self.__clear_blockers()
+        self.driver.find_element(By.CLASS_NAME, 'account-button').click()
         self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
         Bot.wait()
-
+        
+        print('Entering signin information')
         # Entering signin info
         self.driver.find_element(By.ID, 'fld-e').send_keys(self.username)
         self.driver.find_element(By.ID, 'fld-p1').send_keys(self.password)
         Bot.wait()
         self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
         
+        print('On saved items page')
         # Navigating to saved for later page
         self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
         self.driver.find_element(By.CLASS_NAME, 'see-all-link').click()
