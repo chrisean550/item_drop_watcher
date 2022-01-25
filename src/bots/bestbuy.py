@@ -4,13 +4,14 @@ from bs4 import BeautifulSoup
 
 class BestBuy(Bot):
 
-    def __init__(self, username, password, db):
+    def __init__(self, username, password, db, msg):
         self.url = "https://www.bestbuy.com/"
         self.driver = ''
         self.username = username
         self.password = password
         self.store = 'BestBuy'
         self.db = db
+        self.msg = msg
     
     # Connects to store and navigates to desired webpage
     def connect(self):
@@ -20,10 +21,11 @@ class BestBuy(Bot):
     
     # Checks the current status on items in saved for later
     def watch(self):
-        Bot.wait(5, 10)
         self.driver.refresh()
         items = self.__get_items()
         self.__check_availablity(items)
+        Bot.wait(5, 10)
+
     
     def close(self):
         try:
@@ -68,9 +70,9 @@ class BestBuy(Bot):
             title = BeautifulSoup(str(title), 'lxml').text
             status = BeautifulSoup(str(status), 'lxml').text
             if(status == 'Add to Cart'):
-                Bot.avaliable(title, self.store, self.db)
+                Bot.available(title, self.store, self.db, self.msg)
             else:
-                Bot.unavaliable(title, self.store, self.db)
+                Bot.unavailable(title, self.store, self.db)
 
     # Clears any overlays that may prevent clicks
     # might want to try a try catch loop that automates this
