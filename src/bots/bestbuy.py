@@ -38,8 +38,12 @@ class BestBuy(Bot):
     def __nav_to_saved(self):
 
         # Navigating to signin page
-        self.__clear_blockers()
-        self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+        try:
+            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+        except:
+            self.__clear_blockers()
+            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+            
         self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
         Bot.wait()
 
