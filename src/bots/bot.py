@@ -27,43 +27,49 @@ class Bot:
         sleep(randint(min, max))
 
 
-    # Actions to carry out if item is avaliable    
-    def avaliable(item, store, db):
+    # Actions to carry out if item is available    
+    def available(item, store, db, msg):
         current_time = datetime.datetime.now()
         date = str(current_time.month)+'-'+str(current_time.day)+'-'+str(current_time.year)
         time = str(current_time.hour)+':'+str(current_time.minute)
+        message = item+' is AVAILABLE at '+store+' as of '+time+' on '+date
 
         data = {
             'item':item,
             'store':store,
-            'last_avaliable': date+" "+time
+            'last_available': date+' '+time
         }
 
-        # Prints status and updates "Last Avaliablity" cluster
-        print('\033[1;32;40m'+item+' is AVAILABLE at '+store+' as of '+time+' on '+date+'\033[0;0m')
-        db.update_last_avaliablity(data)
+        # Sends message
+        if(db.check_status(item, store) != 'In Stock'):
+            msg.send_message(message)
 
-        # Updates "Current Avaliablity" cluster
+        # Prints status and updates "Last Availablity" cluster
+        print('\033[1;32;40m'+message+'\033[0;0m')
+        db.update_last_availablity(data)
+
+        # Updates "Current Availablity" cluster
         data.update({'status': 'In Stock'})
-        db.update_current_avaliablity(data)
+        db.update_current_availablity(data)
 
-    # Actions to carry out if an item is unavaliable
-    def unavaliable(item, store, db):
+    # Actions to carry out if an item is unavailable
+    def unavailable(item, store, db):
         current_time = datetime.datetime.now()
         date = str(current_time.month)+'-'+str(current_time.day)+'-'+str(current_time.year)
         time = str(current_time.hour)+':'+str(current_time.minute)
+        message = item+' is UNAVAILABLE at '+store+' as of '+time+' on '+date
 
         data = {
             'item':item,
             'store':store,
-            'last_avaliable': date+" "+time
+            'last_available': date+' '+time
         }
 
         # Prints status
-        print('\033[1;31;40m'+item+' is UNAVAILABLE at '+store+' as of '+time+' on '+date+'\033[0;0m')
+        print('\033[1;31;40m'+message+'\033[0;0m')
 
-        # Updates "Current Avaliablity" cluster
-        data.update({'status': 'Unavaliable'})
-        db.update_current_avaliablity(data)
+        # Updates "Current Availablity" cluster
+        data.update({'status': 'Unavailable'})
+        db.update_current_availablity(data)
 
 

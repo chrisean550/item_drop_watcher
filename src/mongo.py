@@ -1,4 +1,3 @@
-from unittest import result
 import pymongo
 
 class MongoConnection:
@@ -18,11 +17,11 @@ class MongoConnection:
         except Exception:
             print("Failed to connect to database")
 
-    def update_last_avaliablity(self, data):
+    def update_last_availablity(self, data):
 
         # Connect to desired cluster
         db = self.client.item_drop
-        collection = db.last_avaliablity
+        collection = db.last_availablity
 
         # Construct query
         query = {'item': data['item'], 'store': data['store']}
@@ -33,10 +32,10 @@ class MongoConnection:
         else:
             collection.insert_one(data)
 
-    def update_current_avaliablity(self, data):
+    def update_current_availablity(self, data):
         # Connect to desired cluster
         db = self.client.item_drop
-        collection = db.current_avaliablity
+        collection = db.current_availablity
 
         # Construct query
         query = {'item': data['item'], 'store': data['store']}
@@ -46,10 +45,24 @@ class MongoConnection:
             collection.update_one(query, {"$set": data}, upsert=True)
         else:
             collection.insert_one(data)
+
+    def check_status(self, item, store):
+        # Connect to desired cluster
+        db = self.client.item_drop
+        collection = db.current_availablity
+
+        # Construct query
+        query = {'item': item, 'store': store}
+
+        if self.__item_exist(collection, query):
+            result = collection.find_one(query)
+            return result['status']
+        else:
+            return 'Unkown'
 
     def __item_exist(self, collection, query):
-        results = collection.find_one(query)
-        if results == "None":
+        result = collection.find_one(query)
+        if str(result) == "None":
             return False
         else: 
             return True
