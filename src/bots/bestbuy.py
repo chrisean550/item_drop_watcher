@@ -48,13 +48,14 @@ class BestBuy(Bot):
         # Entering signin info
         self.driver.find_element(By.ID, 'fld-e').send_keys(self.username)
         self.driver.find_element(By.ID, 'fld-p1').send_keys(self.password)
-        Bot.wait()
         self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
         
-        print('On saved items page')
+        Bot.wait()
+        print('Moving to saved items')
         # Navigating to saved for later page
         self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
         self.driver.find_element(By.CLASS_NAME, 'see-all-link').click()
+        print('on saved items page')
 
     # Uses BS4 to parse page html and get saved items
     def __get_items(self):
