@@ -1,12 +1,15 @@
 import datetime
-from multiprocessing.connection import wait
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from random import randint
 from time import sleep
+import platform
 
-DRIVER_PATH = './geckodriver64'
+if(platform.architecture()[0] == '64bit'):
+    DRIVER_PATH = './geckodriver64'
+else:
+    DRIVER_PATH = './geckodriver'
 HEADLESS = True
 WAIT_TIME = 10
 

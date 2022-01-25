@@ -52,7 +52,6 @@ class BestBuy(Bot):
         # Navigating to saved for later page
         self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
         self.driver.find_element(By.CLASS_NAME, 'see-all-link').click()
-        print('Loaded to '+self.driver.title)
 
     # Uses BS4 to parse page html and get saved items
     def __get_items(self):
