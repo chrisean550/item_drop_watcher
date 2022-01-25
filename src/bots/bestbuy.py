@@ -53,9 +53,27 @@ class BestBuy(Bot):
         Bot.wait()
         print('Moving to saved items')
         # Navigating to saved for later page
-        self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
+        try:
+            self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
+        except:
+            print('Check email for account verification')
+            self.__verifyAccount()
+            self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
+
+
         self.driver.find_element(By.CLASS_NAME, 'see-all-link').click()
         print('on saved items page')
+
+    def __verifyAccount(self):
+        self.driver.find_element(By.ID, 'email-radio').click()
+        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
+        code = input('Enter emailed code')
+        self.driver.find_element(By.ID, 'verificationCode').send_keys(code)
+        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
+        self.driver.find_element(By.ID, 'reenterPassword').send_keys(self.password)
+        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
+
+
 
     # Uses BS4 to parse page html and get saved items
     def __get_items(self):
