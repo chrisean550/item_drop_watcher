@@ -80,12 +80,22 @@ class BestBuy(Bot):
     # might want to try a try catch loop that automates this
     def __clear_blockers(self):
         self.driver.execute_script("""
-            return document.getElementsByClassName('c-modal-grid')[0].remove();
+            el = document.getElementsByClassName('c-modal-grid')[0];
+            if(el){
+                return el.remove();
+            }
         """)
         self.driver.execute_script("""
-            return document.getElementsByClassName('c-modal-window')[0].remove();
+            el = document.getElementsByClassName('c-modal-window')[0];
+            if(el){
+                return el.remove();
+            }
+            
         """)
         self.driver.execute_script("""
-            return document.getElementsByClassName('c-overlay-fullscreen')[0].remove();
+            el = document.getElementsByClassName('c-overlay-fullscreen')[0];
+            if(el){
+                return el.remove();
+            }
         """)
         
