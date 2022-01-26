@@ -17,6 +17,8 @@ SMTP_EMAIL = os.environ.get('SMTP_EMAIL')
 SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD')
 SMS_GATEWAY = os.environ.get('SMS_GATEWAY')
 
+Bots = []
+
 def _main():
 
     # Connecting to mongodb
@@ -30,11 +32,18 @@ def _main():
 
     print('Connecting Bestbuy bot..')
     global bot1
-    bot1 = BestBuy(BB_USR, BB_PWD, db, msg)
-    bot1.connect()
+    Bots.append(BestBuy(BB_USR, BB_PWD, db, msg))
+    
+    for bot in Bots:
+        bot.connect()
     
     while True:
-        bot1.watch()
+        for bot in Bots:
+            bot.check_status()
+
+def end_program():
+    for bot in Bots:
+        bot.shut_down()
 
     
             
@@ -43,5 +52,6 @@ try:
     _main()
 except KeyboardInterrupt:
     print('\nClosing program')
+    end_program()
     
 

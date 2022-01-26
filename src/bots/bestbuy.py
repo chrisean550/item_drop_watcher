@@ -20,19 +20,15 @@ class BestBuy(Bot):
         self.__nav_to_saved()
     
     # Checks the current status on items in saved for later
-    def watch(self):
+    def check_status(self):
         self.driver.refresh()
         items = self.__get_items()
         self.__check_availablity(items)
         Bot.wait(5, 10)
 
     
-    def close(self):
-        try:
-            self.driver.close()
-            self.driver.quit()
-        except:
-            pass
+    def shut_down(self):
+        self.driver.quit()
 
     # From the home page it signs in to account and accesses saved page
     def __nav_to_saved(self):
@@ -87,7 +83,7 @@ class BestBuy(Bot):
         for item in items:
             i = BeautifulSoup(str(item), 'html.parser')
             title = i.find('a', class_='title')
-            status = i.find('button', class_='add-to-cart-button' )
+            status = i.find('button', class_='add-to-cart-button')
             title = BeautifulSoup(str(title), 'lxml').text
             status = BeautifulSoup(str(status), 'lxml').text
             if(status == 'Add to Cart'):

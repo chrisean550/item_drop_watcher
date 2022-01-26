@@ -6,7 +6,7 @@ from random import randint
 from time import sleep
 
 DRIVER_PATH = './geckodriver64'
-HEADLESS = True
+HEADLESS = False
 WAIT_TIME = 10
 
 class Bot:

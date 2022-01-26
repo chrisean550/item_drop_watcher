@@ -16,7 +16,7 @@ pip install -r requirements.txt > requirements_install_log.txt
 
 echo "Dependencies installed.. check requirements_install_log.txt for output"
 
-python src/main.py "prod"
+python src/main.py
 
 echo "Goodbye!"
 
