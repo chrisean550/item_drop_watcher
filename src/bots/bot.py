@@ -4,9 +4,15 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from random import randint
 from time import sleep
+import sys
 
-DRIVER_PATH = './geckodriver64'
-HEADLESS = False
+if sys.argv[1] == 'dev':
+    HEADLESS = False
+    DRIVER_PATH = './geckodriver64'
+else:
+    HEADLESS = True
+    DRIVER_PATH = './geckodriver'
+
 WAIT_TIME = 10
 
 class Bot:

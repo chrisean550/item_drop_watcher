@@ -3,7 +3,6 @@ from mongo import MongoConnection
 from dotenv import load_dotenv
 from bots.bestbuy import BestBuy
 from message import Message
-import sys
 import os
 
 load_dotenv()
@@ -30,8 +29,7 @@ def _main():
     msg = Message(SMTP_EMAIL, SMTP_PASSWORD, SMS_GATEWAY, SMTP, SMTP_PORT)
     msg.start()
 
-    print('Connecting Bestbuy bot..')
-    global bot1
+    print('Connecting bots..')
     Bots.append(BestBuy(BB_USR, BB_PWD, db, msg))
     
     for bot in Bots:
@@ -44,9 +42,6 @@ def _main():
 def end_program():
     for bot in Bots:
         bot.shut_down()
-
-    
-            
 
 try:
     _main()
