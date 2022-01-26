@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementClickInterceptedException
 from bots.bot import Bot
 from bs4 import BeautifulSoup
 
@@ -33,43 +34,23 @@ class BestBuy(Bot):
     # From the home page it signs in to account and accesses saved page
     def __nav_to_saved(self):
 
-        print('Navigating to saved items')
         # Navigating to signin page
-        self.__clear_blockers()
-        self.driver.find_element(By.CLASS_NAME, 'account-button').click()
-        self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
-        Bot.wait()
+        try:
+            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+            self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
+        except ElementClickInterceptedException:
+            self.__clear_blockers()
+            self.driver.find_element(By.CLASS_NAME, 'account-button').click()
+            self.driver.find_element(By.CLASS_NAME, 'sign-in-btn').click()
         
-        print('Entering signin information')
         # Entering signin info
         self.driver.find_element(By.ID, 'fld-e').send_keys(self.username)
         self.driver.find_element(By.ID, 'fld-p1').send_keys(self.password)
         self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
         
-        Bot.wait()
-        print('Moving to saved items')
         # Navigating to saved for later page
-        try:
-            self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
-        except:
-            print('Check email for account verification')
-            self.__verifyAccount()
-            self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
-
-
+        self.driver.find_element(By.CLASS_NAME, 'savedItems-button').click()
         self.driver.find_element(By.CLASS_NAME, 'see-all-link').click()
-        print('on saved items page')
-
-    def __verifyAccount(self):
-        self.driver.find_element(By.ID, 'email-radio').click()
-        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
-        code = input('Enter emailed code')
-        self.driver.find_element(By.ID, 'verificationCode').send_keys(code)
-        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
-        self.driver.find_element(By.ID, 'reenterPassword').send_keys(self.password)
-        self.driver.find_element(By.CLASS_NAME, 'cia-form__controls__submit').click()
-
-
 
     # Uses BS4 to parse page html and get saved items
     def __get_items(self):
@@ -92,25 +73,7 @@ class BestBuy(Bot):
                 Bot.unavailable(title, self.store, self.db)
 
     # Clears any overlays that may prevent clicks
-    # might want to try a try catch loop that automates this
     def __clear_blockers(self):
-        self.driver.execute_script("""
-            el = document.getElementsByClassName('c-modal-grid')[0];
-            if(el){
-                return el.remove();
-            }
-        """)
-        self.driver.execute_script("""
-            el = document.getElementsByClassName('c-modal-window')[0];
-            if(el){
-                return el.remove();
-            }
-            
-        """)
-        self.driver.execute_script("""
-            el = document.getElementsByClassName('c-overlay-fullscreen')[0];
-            if(el){
-                return el.remove();
-            }
-        """)
+        self.driver.find_element(By.CLASS_NAME, 'c-close-icon').click()
+        Bot.wait()
         
