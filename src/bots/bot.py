@@ -11,7 +11,7 @@ if sys.argv[1] == 'dev':
     DRIVER_PATH = './geckodriver64'
 else:
     HEADLESS = True
-    DRIVER_PATH = './geckodriver'
+    DRIVER_PATH = './geckodriver64'
 
 WAIT_TIME = 10
 
